@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Valve Sizing - Instrument Tech Toolbox</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a3a; line-height: 1.7; }
+        .header { background: linear-gradient(135deg, #0b2b44, #1a5276); color: white; padding: 25px 20px; }
+        .header .container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header a { color: white; text-decoration: none; font-weight: 600; }
+        .header a:hover { color: #f1c40f; }
+        .header .back-link { background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 8px; font-size: 0.95rem; transition: background 0.2s; }
+        .header .back-link:hover { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .breadcrumb { font-size: 0.9rem; color: #5a6a7a; margin-bottom: 20px; }
+        .breadcrumb a { color: #1a5276; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .tool-header { margin-bottom: 30px; }
+        .tool-header .icon { font-size: 3.5rem; margin-bottom: 5px; }
+        .tool-header h1 { font-size: 2.4rem; color: #0b2b44; }
+        .tool-header .subtitle { font-size: 1.1rem; color: #4a5a6a; }
+        .tag { display: inline-block; background: #e8edf3; color: #1a5276; font-size: 0.8rem; padding: 4px 16px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .tag.advanced { background: #8e44ad; color: white; }
+        .tag.essential { background: #f1c40f; color: #0b2b44; }
+        .content-section { background: white; border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .content-section h2 { color: #0b2b44; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f1c40f; padding-bottom: 8px; }
+        .content-section h3 { color: #1a5276; font-size: 1.15rem; margin-top: 20px; margin-bottom: 8px; }
+        .content-section h4 { color: #1a5276; font-size: 1.05rem; margin-top: 15px; margin-bottom: 5px; }
+        .content-section ul { padding-left: 25px; margin: 10px 0; }
+        .content-section ul li { margin-bottom: 6px; }
+        .content-section .tip-box { background: #eef7fb; border-left: 4px solid #1a5276; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .warning-box { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .success-box { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .info-box { background: #eaf2fa; border-left: 4px solid #2980b9; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table th { background: #e8edf3; border-bottom: 2px solid #1a5276; padding: 8px; text-align: left; }
+        table td { padding: 8px; border-bottom: 1px solid #d0dae6; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .related-item { background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e8edf3; transition: all 0.2s; text-decoration: none; color: #1a2a3a; }
+        .related-item:hover { background: #e8edf3; transform: translateY(-3px); }
+        .related-item .icon { font-size: 1.8rem; display: block; }
+        .related-item .name { font-weight: 600; font-size: 0.9rem; }
+        .footer { background: #0b2b44; color: #a0b8cc; text-align: center; padding: 25px 20px; font-size: 0.9rem; margin-top: 20px; }
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header .container { flex-direction: column; text-align: center; } .tool-header h1 { font-size: 1.8rem; } .content-section { padding: 20px; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; Control Valve Sizing</div>
+        <div class="tool-header">
+            <div class="icon">🚰</div>
+            <h1>Control Valve Sizing</h1>
+            <p class="subtitle">Tools, formulas, and reference data for sizing and selecting control valves.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag advanced">Advanced</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔍 Introduction to Control Valve Sizing</h2>
+            <p>A <strong>control valve</strong> is the final control element in a process control loop. It regulates the flow of fluid (liquid, gas, or steam) based on a signal from a controller.</p>
+            <div class="info-box"><strong>🎯 Why Sizing Matters:</strong> Proper sizing ensures stable control, efficiency, longevity, and safety.</div>
+            <p>Common valve types:</p>
+            <ul>
+                <li><strong>Globe Valves:</strong> Most common for throttling control</li>
+                <li><strong>Ball Valves:</strong> On/off or throttling (with characterizable trim)</li>
+                <li><strong>Butterfly Valves:</strong> For large pipe sizes</li>
+                <li><strong>Gate Valves:</strong> On/off only</li>
+                <li><strong>Needle Valves:</strong> Low flow, precise control</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>📊 Valve Flow Characteristics</h2>
+            <h3>1. Linear</h3>
+            <ul>
+                <li>Flow rate increases linearly with valve opening</li>
+                <li>Example: 50% open = 50% flow</li>
+                <li>Use when pressure drop is relatively constant</li>
+            </ul>
+            <h3>2. Equal Percentage</h3>
+            <ul>
+                <li>Each equal increment of valve stroke produces an equal percentage change in flow</li>
+                <li>Most common (~70% of control valves)</li>
+                <li>Use when pressure drop varies significantly</li>
+            </ul>
+            <h3>3. Quick Opening</h3>
+            <ul>
+                <li>Large flow increase at low valve openings</li>
+                <li>Use for on/off control</li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> Most process control applications use <strong>equal percentage</strong> valves for stable control.</div>
+        </div>
+        <div class="content-section">
+            <h2>⚙️ Valve Actuators</h2>
+            <h3>Pneumatic Actuators</h3>
+            <ul>
+                <li>Most common type in process industries</li>
+                <li>Use compressed air (20-100 psi or 3-15 psi)</li>
+                <li><strong>Spring Return:</strong> Air-to-open (ATO) or Air-to-close (ATC)</li>
+                <li>Advantages: Simple, reliable, explosion-proof</li>
+            </ul>
+            <h3>Electric Actuators</h3>
+            <ul>
+                <li>Use electric motors (AC or DC)</li>
+                <li>Common in: Municipal water, HVAC</li>
+                <li>Advantages: No air supply needed, precise positioning</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>🎯 Valve Positioners</h2>
+            <ul>
+                <li>Compares control signal with valve position and adjusts actuator</li>
+                <li>Provides accuracy, speed, friction compensation, and diagnostics</li>
+                <li>Types: Pneumatic, Electro-Pneumatic (I/P), HART, Smart</li>
+            </ul>
+            <div class="tip-box"><strong>💡 Modern Standard:</strong> Most new installations use <strong>smart</strong> or <strong>HART</strong> positioners with diagnostics.</div>
+        </div>
+        <div class="content-section">
+            <h2>📐 Understanding Cv (Valve Flow Coefficient)</h2>
+            <p><strong>Cv</strong> is the number of US gallons per minute of water at 60°F that flows through the valve with a 1 psi pressure drop.</p>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">Valve Size (inches)</th><th style="padding:8px; text-align:left;">Cv Range</th><th style="padding:8px; text-align:left;">Application</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">½"</td><td style="padding:8px;">0.5 - 5</td><td style="padding:8px;">Small process lines</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">1"</td><td style="padding:8px;">5 - 20</td><td style="padding:8px;">Pilot plants</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">2"</td><td style="padding:8px;">20 - 100</td><td style="padding:8px;">General process control</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">3"</td><td style="padding:8px;">100 - 300</td><td style="padding:8px;">Large process lines</td></tr>
+                <tr><td style="padding:8px;">4"</td><td style="padding:8px;">300 - 600</td><td style="padding:8px;">Main process headers</td></tr>
+            </table>
+        </div>
+        <div class="content-section">
+            <h2>📊 Basic Sizing Formulas</h2>
+            <h3>For Liquids:</h3>
+            <div style="background:#f8fafc; border-radius:8px; padding:15px; margin:10px 0; text-align:center;">
+                <p style="font-size:1.1rem; font-weight:600; color:#0b2b44;">Cv = Q × √(G / ΔP)</p>
+                <p style="font-size:0.9rem; color:#5a6a7a;">Where: Q = Flow (GPM), G = Specific Gravity, ΔP = Pressure Drop (psi)</p>
+            </div>
+            <div class="warning-box"><strong>⚠️ Note:</strong> These are simplified formulas. Refer to ISA standards or manufacturer software for final selections.</div>
+        </div>
+        <div class="content-section">
+            <h2>🔧 Valve Troubleshooting</h2>
+            <ul>
+                <li><strong>Won't move / sticks:</strong> Packing too tight, corrosion, binding</li>
+                <li><strong>Hums / buzzes:</strong> Cavitation, flashing, actuator issues</li>
+                <li><strong>Leaks:</strong> Worn seat, damage, improper seating</li>
+                <li><strong>Slow response:</strong> Low air pressure, faulty positioner, friction</li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> Start with the positioner when a valve isn't responding correctly. Most issues are positioner problems!</div>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="calibrator.html" class="related-item"><span class="icon">🔁</span><span class="name">4-20mA Calibrator</span></a>
+                <a href="hart.html" class="related-item"><span class="icon">📡</span><span class="name">HART Communicator</span></a>
+                <a href="troubleshoot.html" class="related-item"><span class="icon">🧪</span><span class="name">Loop Troubleshooting</span></a>
+                <a href="training.html" class="related-item"><span class="icon">📘</span><span class="name">Instrumentation Basics</span></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
+    </footer>
+</body>
+</html>

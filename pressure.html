@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Calibrator - Instrument Tech Toolbox</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a3a; line-height: 1.7; }
+        .header { background: linear-gradient(135deg, #0b2b44, #1a5276); color: white; padding: 25px 20px; }
+        .header .container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header a { color: white; text-decoration: none; font-weight: 600; }
+        .header a:hover { color: #f1c40f; }
+        .header .back-link { background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 8px; font-size: 0.95rem; transition: background 0.2s; }
+        .header .back-link:hover { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .breadcrumb { font-size: 0.9rem; color: #5a6a7a; margin-bottom: 20px; }
+        .breadcrumb a { color: #1a5276; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .tool-header { margin-bottom: 30px; }
+        .tool-header .icon { font-size: 3.5rem; margin-bottom: 5px; }
+        .tool-header h1 { font-size: 2.4rem; color: #0b2b44; }
+        .tool-header .subtitle { font-size: 1.1rem; color: #4a5a6a; }
+        .tag { display: inline-block; background: #e8edf3; color: #1a5276; font-size: 0.8rem; padding: 4px 16px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .tag.essential { background: #f1c40f; color: #0b2b44; }
+        .tag.calibration { background: #27ae60; color: white; }
+        .content-section { background: white; border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .content-section h2 { color: #0b2b44; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f1c40f; padding-bottom: 8px; }
+        .content-section h3 { color: #1a5276; font-size: 1.15rem; margin-top: 20px; margin-bottom: 8px; }
+        .content-section ul { padding-left: 25px; margin: 10px 0; }
+        .content-section ul li { margin-bottom: 6px; }
+        .content-section .tip-box { background: #eef7fb; border-left: 4px solid #1a5276; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .warning-box { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .success-box { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table th { background: #e8edf3; border-bottom: 2px solid #1a5276; padding: 8px; text-align: left; }
+        table td { padding: 8px; border-bottom: 1px solid #d0dae6; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .related-item { background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e8edf3; transition: all 0.2s; text-decoration: none; color: #1a2a3a; }
+        .related-item:hover { background: #e8edf3; transform: translateY(-3px); }
+        .related-item .icon { font-size: 1.8rem; display: block; }
+        .related-item .name { font-weight: 600; font-size: 0.9rem; }
+        .footer { background: #0b2b44; color: #a0b8cc; text-align: center; padding: 25px 20px; font-size: 0.9rem; margin-top: 20px; }
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header .container { flex-direction: column; text-align: center; } .tool-header h1 { font-size: 1.8rem; } .content-section { padding: 20px; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; Pressure Calibrator</div>
+        <div class="tool-header">
+            <div class="icon">💨</div>
+            <h1>Pressure Calibrator</h1>
+            <p class="subtitle">Generate, measure, and calibrate pressure for gauges, transmitters, and switches.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag calibration">Calibration</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔍 What is a Pressure Calibrator?</h2>
+            <p>A <strong>pressure calibrator</strong> is a tool used to generate and measure pressure for testing and calibrating pressure instruments. It combines a <strong>pressure source</strong> (hand pump) and a <strong>precision pressure gauge</strong> (reference) in one portable package.</p>
+            <ul>
+                <li>📤 <strong>Generate Pressure:</strong> Use a hand pump (pneumatic or hydraulic) to create pressure</li>
+                <li>📥 <strong>Measure Pressure:</strong> Read pressure with a reference-grade sensor</li>
+                <li>📊 <strong>Calibrate:</strong> Verify and adjust pressure transmitters, gauges, and switches</li>
+                <li>🔄 <strong>Test:</strong> Check pressure switches for setpoint and deadband</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>🔢 Types of Pressure Calibrators</h2>
+            <h3>🔹 Pneumatic (Air/Gas) Calibrators</h3>
+            <ul>
+                <li><strong>Low Pressure:</strong> -1 to 2 bar (-14.5 to 30 psi)</li>
+                <li><strong>Medium Pressure:</strong> Up to 20 bar (300 psi)</li>
+                <li><strong>High Pressure:</strong> Up to 100 bar (1,500 psi)</li>
+                <li><strong>Common Brands:</strong> Fluke 718, Beamex POC, Druck DPI 610</li>
+            </ul>
+            <h3>🔹 Hydraulic (Liquid) Calibrators</h3>
+            <ul>
+                <li>Used for <strong>very high pressures</strong> (up to 700 bar / 10,000 psi)</li>
+                <li>Uses oil or water as the pressure medium</li>
+                <li><strong>Example:</strong> Fluke 7252, Beamex PG series</li>
+                <li>Pros: Generates extreme pressures, very stable</li>
+                <li>Cons: Messy, requires cleaning</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>📋 How to Calibrate a Pressure Transmitter</h2>
+            <h3>Equipment Needed:</h3>
+            <ul>
+                <li>Pressure calibrator (with hand pump and reference gauge)</li>
+                <li>Loop calibrator or multimeter (to measure 4-20mA output)</li>
+                <li>Appropriate fittings and tubing</li>
+            </ul>
+            <h3>Step-by-Step:</h3>
+            <ol>
+                <li>Isolate the transmitter from the process</li>
+                <li>Connect the calibrator to the transmitter's pressure port</li>
+                <li>Connect the loop calibrator to measure mA output</li>
+                <li>Apply zero pressure and note mA reading (should be 4mA)</li>
+                <li>Apply span pressure and note mA reading (should be 20mA)</li>
+                <li>Check intermediate points: 25%, 50%, 75% of span</li>
+                <li>Adjust if needed using zero and span adjustments</li>
+                <li>Record readings on a calibration sheet</li>
+            </ol>
+            <div class="success-box"><strong>✅ Best Practice:</strong> Always do a 5-point calibration (0%, 25%, 50%, 75%, 100%) to verify linearity.</div>
+        </div>
+        <div class="content-section">
+            <h2>📊 Common Pressure Units Conversion</h2>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">Unit</th><th style="padding:8px; text-align:left;">Conversion to bar</th><th style="padding:8px; text-align:left;">Common Use</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">1 bar</td><td style="padding:8px;">1 bar</td><td style="padding:8px;">Metric standard</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">1 psi</td><td style="padding:8px;">0.06895 bar</td><td style="padding:8px;">Imperial standard</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">1 kPa</td><td style="padding:8px;">0.01 bar</td><td style="padding:8px;">Metric (low pressures)</td></tr>
+                <tr><td style="padding:8px;">1 MPa</td><td style="padding:8px;">10 bar</td><td style="padding:8px;">Metric (high pressures)</td></tr>
+            </table>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="multimeter.html" class="related-item"><span class="icon">📊</span><span class="name">Multimeter</span></a>
+                <a href="calibrator.html" class="related-item"><span class="icon">🔁</span><span class="name">4-20mA Calibrator</span></a>
+                <a href="hart.html" class="related-item"><span class="icon">📡</span><span class="name">HART Communicator</span></a>
+                <a href="troubleshoot.html" class="related-item"><span class="icon">🧪</span><span class="name">Loop Troubleshooting</span></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
+    </footer>
+</body>
+</html>

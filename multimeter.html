@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimeter (VOM) - Instrument Tech Toolbox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #1a2a3a;
+            line-height: 1.7;
+        }
+        .header {
+            background: linear-gradient(135deg, #0b2b44, #1a5276);
+            color: white;
+            padding: 25px 20px;
+        }
+        .header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .header a:hover {
+            color: #f1c40f;
+        }
+        .header .back-link {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .header .back-link:hover {
+            background: rgba(255,255,255,0.25);
+            color: white;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #5a6a7a;
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .tool-header {
+            margin-bottom: 30px;
+        }
+        .tool-header .icon {
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+        }
+        .tool-header h1 {
+            font-size: 2.4rem;
+            color: #0b2b44;
+        }
+        .tool-header .subtitle {
+            font-size: 1.1rem;
+            color: #4a5a6a;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8edf3;
+            color: #1a5276;
+            font-size: 0.8rem;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-right: 6px;
+        }
+        .tag.essential {
+            background: #f1c40f;
+            color: #0b2b44;
+        }
+        .tag.calibration {
+            background: #27ae60;
+            color: white;
+        }
+        .tag.advanced {
+            background: #8e44ad;
+            color: white;
+        }
+        .tag.training {
+            background: #2980b9;
+            color: white;
+        }
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        .content-section h2 {
+            color: #0b2b44;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1c40f;
+            padding-bottom: 8px;
+        }
+        .content-section h3 {
+            color: #1a5276;
+            font-size: 1.15rem;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .content-section ul {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        .content-section ul li {
+            margin-bottom: 6px;
+        }
+        .content-section .tip-box {
+            background: #eef7fb;
+            border-left: 4px solid #1a5276;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .content-section .warning-box {
+            background: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .content-section .success-box {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .related-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e8edf3;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: #1a2a3a;
+        }
+        .related-item:hover {
+            background: #e8edf3;
+            transform: translateY(-3px);
+        }
+        .related-item .icon {
+            font-size: 1.8rem;
+            display: block;
+        }
+        .related-item .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .footer {
+            background: #0b2b44;
+            color: #a0b8cc;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tool-header h1 {
+                font-size: 1.8rem;
+            }
+            .content-section {
+                padding: 20px;
+            }
+            .related-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> &gt; Multimeter (VOM)
+        </div>
+        <div class="tool-header">
+            <div class="icon">📊</div>
+            <h1>Multimeter (VOM)</h1>
+            <p class="subtitle">The fundamental tool for measuring voltage, current, and resistance.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag">Electrical</span>
+                <span class="tag">Troubleshooting</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔍 Overview</h2>
+            <p>A <strong>multimeter</strong> (also called a VOM — Volt-Ohm-Milliammeter) is the most essential tool in any instrument technician's toolkit. It measures electrical properties and helps diagnose problems in circuits, loops, and instruments.</p>
+            <p>Modern multimeters are <strong>digital (DMM)</strong>, but analog meters are still used in some applications for their ability to show trends and fluctuations.</p>
+            <div class="tip-box">
+                <strong>💡 Did you know?</strong> The first commercial multimeter was invented in the 1920s and weighed over 30 pounds!
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔢 Types of Multimeters</h2>
+            <h3>Analog Multimeter (VOM)</h3>
+            <ul>
+                <li>Uses a moving needle and printed scale</li>
+                <li>Better for seeing <strong>trends</strong> and <strong>fluctuating</strong> signals</li>
+                <li>No batteries needed for voltage/current measurements</li>
+                <li>Less accurate than digital, but great for troubleshooting</li>
+            </ul>
+            <h3>Digital Multimeter (DMM)</h3>
+            <ul>
+                <li>Shows exact numeric readings on an LCD screen</li>
+                <li>Higher accuracy and resolution</li>
+                <li>Includes features like <strong>auto-ranging</strong>, <strong>data hold</strong>, and <strong>backlight</strong></li>
+                <li>Many include <strong>True RMS</strong> for accurate AC measurements</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>📋 How to Use a Multimeter</h2>
+            <h3>1. Measuring Voltage (AC or DC)</h3>
+            <ul>
+                <li>Set dial to the correct voltage range (V~ for AC, V⎓ for DC)</li>
+                <li>Connect <strong>black lead</strong> to COM terminal</li>
+                <li>Connect <strong>red lead</strong> to VΩmA terminal</li>
+                <li>Place probes across the component (parallel connection)</li>
+                <li>Read the value on the display</li>
+            </ul>
+            <h3>2. Measuring Current (Amps)</h3>
+            <ul>
+                <li>Set dial to the correct current range (A~ or A⎓)</li>
+                <li><strong>Important:</strong> You must break the circuit and connect the meter <strong>in series</strong></li>
+                <li>For 4-20mA loops, use the mA terminal</li>
+                <li>Never connect across a voltage source in current mode (it creates a short!)</li>
+            </ul>
+            <h3>3. Measuring Resistance (Ohms)</h3>
+            <ul>
+                <li>Set dial to Ω (ohms) range</li>
+                <li><strong>Power off</strong> the circuit before measuring resistance</li>
+                <li>Place probes across the component (parallel connection)</li>
+                <li>Zero the meter for accurate readings</li>
+            </ul>
+            <div class="warning-box">
+                <strong>⚠️ SAFETY WARNING:</strong> When measuring current, always start with the highest range and work down. Never measure resistance on a live circuit!
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🛡️ Safety Ratings (CAT Ratings)</h2>
+            <p>Multimeters are rated for different environments. Always use a meter rated for the application:</p>
+            <ul>
+                <li><strong>CAT I:</strong> Electronic equipment, protected circuits</li>
+                <li><strong>CAT II:</strong> Single-phase appliances, 240V circuits</li>
+                <li><strong>CAT III:</strong> Distribution panels, 3-phase equipment</li>
+                <li><strong>CAT IV:</strong> Utility connections, outdoor lines</li>
+            </ul>
+            <p><strong>For instrument technicians:</strong> A CAT III meter with 600V or 1000V rating is recommended for most industrial applications.</p>
+        </div>
+        <div class="content-section">
+            <h2>🔄 Common Issues & Troubleshooting</h2>
+            <ul>
+                <li><strong>No reading:</strong> Check the fuse (most meters have one or two internal fuses)</li>
+                <li><strong>Incorrect reading:</strong> Check the battery or try a different range</li>
+                <li><strong>No continuity:</strong> Test the leads for continuity first</li>
+                <li><strong>Flickering display:</strong> Could be a loose connection or failing battery</li>
+                <li><strong>Blown fuse:</strong> Replace with the exact same rating (don't use a higher amp fuse!)</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="calibrator.html" class="related-item">
+                    <span class="icon">🔁</span>
+                    <span class="name">4-20mA Calibrator</span>
+                </a>
+                <a href="hart.html" class="related-item">
+                    <span class="icon">📡</span>
+                    <span class="name">HART Communicator</span>
+                </a>
+                <a href="troubleshoot.html" class="related-item">
+                    <span class="icon">🧪</span>
+                    <span class="name">Loop Troubleshooting</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">
+            <a href="index.html">Home</a> &bull; Free to use &bull; No ads
+        </p>
+    </footer>
+</body>
+</html>

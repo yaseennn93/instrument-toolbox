@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HART Communicator - Instrument Tech Toolbox</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a3a; line-height: 1.7; }
+        .header { background: linear-gradient(135deg, #0b2b44, #1a5276); color: white; padding: 25px 20px; }
+        .header .container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header a { color: white; text-decoration: none; font-weight: 600; }
+        .header a:hover { color: #f1c40f; }
+        .header .back-link { background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 8px; font-size: 0.95rem; transition: background 0.2s; }
+        .header .back-link:hover { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .breadcrumb { font-size: 0.9rem; color: #5a6a7a; margin-bottom: 20px; }
+        .breadcrumb a { color: #1a5276; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .tool-header { margin-bottom: 30px; }
+        .tool-header .icon { font-size: 3.5rem; margin-bottom: 5px; }
+        .tool-header h1 { font-size: 2.4rem; color: #0b2b44; }
+        .tool-header .subtitle { font-size: 1.1rem; color: #4a5a6a; }
+        .tag { display: inline-block; background: #e8edf3; color: #1a5276; font-size: 0.8rem; padding: 4px 16px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .tag.essential { background: #f1c40f; color: #0b2b44; }
+        .tag.advanced { background: #8e44ad; color: white; }
+        .tag.calibration { background: #27ae60; color: white; }
+        .content-section { background: white; border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .content-section h2 { color: #0b2b44; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f1c40f; padding-bottom: 8px; }
+        .content-section h3 { color: #1a5276; font-size: 1.15rem; margin-top: 20px; margin-bottom: 8px; }
+        .content-section ul { padding-left: 25px; margin: 10px 0; }
+        .content-section ul li { margin-bottom: 6px; }
+        .content-section .tip-box { background: #eef7fb; border-left: 4px solid #1a5276; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .warning-box { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .success-box { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .related-item { background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e8edf3; transition: all 0.2s; text-decoration: none; color: #1a2a3a; }
+        .related-item:hover { background: #e8edf3; transform: translateY(-3px); }
+        .related-item .icon { font-size: 1.8rem; display: block; }
+        .related-item .name { font-weight: 600; font-size: 0.9rem; }
+        .footer { background: #0b2b44; color: #a0b8cc; text-align: center; padding: 25px 20px; font-size: 0.9rem; margin-top: 20px; }
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header .container { flex-direction: column; text-align: center; } .tool-header h1 { font-size: 1.8rem; } .content-section { padding: 20px; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; HART Communicator</div>
+        <div class="tool-header">
+            <div class="icon">📡</div>
+            <h1>HART Communicator</h1>
+            <p class="subtitle">The essential handheld device for configuring, calibrating, and troubleshooting smart instruments.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag advanced">Advanced</span>
+                <span class="tag calibration">Calibration</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔍 What is HART?</h2>
+            <p><strong>HART</strong> (Highway Addressable Remote Transducer) is a communication protocol that allows digital signals to be sent over traditional 4-20mA analog wiring. It's the industry standard for smart instruments in process automation.</p>
+            <p>A <strong>HART Communicator</strong> is a handheld device used to interface with HART-enabled instruments. It allows technicians to:</p>
+            <ul>
+                <li>🔧 <strong>Configure</strong> instrument parameters (range, units, damping, etc.)</li>
+                <li>📊 <strong>Calibrate</strong> instruments and verify performance</li>
+                <li>🔄 <strong>Diagnose</strong> problems and read diagnostic data</li>
+                <li>📈 <strong>Monitor</strong> real-time process variables</li>
+                <li>📝 <strong>Log</strong> data and save configurations</li>
+            </ul>
+            <div class="tip-box"><strong>💡 Key Fact:</strong> HART is a "hybrid" protocol — it superimposes a digital signal on top of the analog 4-20mA signal without interfering with it.</div>
+        </div>
+        <div class="content-section">
+            <h2>🔢 Types of HART Communicators</h2>
+            <h3>🔹 Dedicated Handheld Communicators</h3>
+            <ul>
+                <li><strong>Emerson 475/475 Field Communicator:</strong> The industry standard, supports HART and Foundation Fieldbus</li>
+                <li><strong>Emerson Trex:</strong> Modern replacement for the 475 with touchscreen and advanced features</li>
+                <li>Pros: Rugged, purpose-built, reliable for field use</li>
+                <li>Cons: Expensive, requires regular software updates</li>
+            </ul>
+            <h3>🔹 Software-Based Communicators (PC/Mobile)</h3>
+            <ul>
+                <li><strong>AMS Device Manager:</strong> PC-based software from Emerson</li>
+                <li><strong>PACTware:</strong> Free FDT/DTM software for configuration</li>
+                <li>Requires a <strong>HART modem</strong> (USB or Bluetooth) to connect to instruments</li>
+                <li>Pros: Cost-effective, easier to update and maintain</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>📋 How to Use a HART Communicator</h2>
+            <h3>1. Connecting to an Instrument</h3>
+            <ul>
+                <li>Connect the communicator <strong>in parallel</strong> with the instrument (across the 4-20mA loop)</li>
+                <li>The loop must have at least <strong>250Ω impedance</strong> for HART communication</li>
+                <li>Ensure the loop is powered (can be powered by the control system or a separate power supply)</li>
+            </ul>
+            <h3>2. Basic Operations</h3>
+            <ul>
+                <li><strong>Read Device Information:</strong> Tag, descriptor, manufacturer, model, firmware version</li>
+                <li><strong>View PV (Primary Variable):</strong> Live reading from the instrument</li>
+                <li><strong>Configure Range:</strong> Set the Lower Range Value (LRV) and Upper Range Value (URV)</li>
+                <li><strong>Change Units:</strong> Select engineering units (psi, bar, °C, °F, etc.)</li>
+                <li><strong>Set Damping:</strong> Adjust the response time (smoothing) of the output</li>
+            </ul>
+            <div class="warning-box"><strong>⚠️ WARNING:</strong> Always ensure you are in the correct mode (offline/online) and working on the correct instrument. Configuring the wrong device can cause process disturbances!</div>
+            <div class="success-box"><strong>✅ Best Practice:</strong> Before making changes, always perform a <strong>"Read All"</strong> or <strong>"Save Configuration"</strong> to have a backup.</div>
+        </div>
+        <div class="content-section">
+            <h2>🔄 Common HART-Compatible Instruments</h2>
+            <ul>
+                <li><strong>Pressure Transmitters:</strong> Rosemount 3051, Yokogawa EJA, Endress+Hauser Cerabar</li>
+                <li><strong>Temperature Transmitters:</strong> Rosemount 3144, 644, Yokogawa YTA</li>
+                <li><strong>Level Transmitters:</strong> Radar, ultrasonic, and guided wave radar instruments</li>
+                <li><strong>Flow Meters:</strong> Magnetic, Coriolis, vortex, and differential pressure flow meters</li>
+                <li><strong>Valve Positioners:</strong> Digital valve controllers and positioners</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>🔧 Common HART Communication Issues</h2>
+            <ul>
+                <li><strong>No Communication:</strong> Insufficient loop resistance (needs ≥250Ω), wrong polarity, instrument not HART-compatible</li>
+                <li><strong>Communication Intermittent:</strong> Electrical noise, poor contact, damaged instrument</li>
+                <li><strong>Device Not Found:</strong> Instrument address is not 0 (multidrop mode)</li>
+            </ul>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> When troubleshooting HART communication, start with the basics: check loop resistance, polarity, and wiring integrity.</div>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="multimeter.html" class="related-item"><span class="icon">📊</span><span class="name">Multimeter</span></a>
+                <a href="calibrator.html" class="related-item"><span class="icon">🔁</span><span class="name">4-20mA Calibrator</span></a>
+                <a href="pressure.html" class="related-item"><span class="icon">💨</span><span class="name">Pressure Calibrator</span></a>
+                <a href="troubleshoot.html" class="related-item"><span class="icon">🧪</span><span class="name">Loop Troubleshooting</span></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
+    </footer>
+</body>
+</html>

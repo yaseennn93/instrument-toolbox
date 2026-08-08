@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrument Tech Toolbox</title>
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #1a2a3a;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #0b2b44, #1a5276);
+            color: white;
+            padding: 40px 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            color: #f1c40f;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: #f1c40f;
+            color: #0b2b44;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b2b44;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #f1c40f;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* TOOL GRID */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-left: 5px solid #1a5276;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .tool-card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            color: #0b2b44;
+            margin-bottom: 6px;
+        }
+
+        .tool-card p {
+            font-size: 0.95rem;
+            color: #4a5a6a;
+            margin-bottom: 10px;
+        }
+
+        .tool-card .tag {
+            display: inline-block;
+            background: #e8edf3;
+            color: #1a5276;
+            font-size: 0.75rem;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tool-card.featured {
+            border-left-color: #f1c40f;
+            background: #fffef7;
+        }
+
+        .tool-card.calculator {
+            border-left-color: #27ae60;
+        }
+
+        .tool-card.learning {
+            border-left-color: #8e44ad;
+        }
+
+        .tool-card.reference {
+            border-left-color: #2980b9;
+        }
+
+        .tool-card.advanced {
+            border-left-color: #e67e22;
+        }
+
+        /* QUICK ACCESS */
+        .quick-access {
+            background: white;
+            border-radius: 12px;
+            padding: 25px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quick-access h3 {
+            font-size: 1.1rem;
+            color: #0b2b44;
+            margin-right: 10px;
+        }
+
+        .quick-access a {
+            background: #e8edf3;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #1a5276;
+            font-weight: 500;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .quick-access a:hover {
+            background: #d0dae6;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #0b2b44;
+            color: #a0b8cc;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            .quick-access {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>🔧 Instrument Tech <span>Toolbox</span></h1>
+        <p>Your central hub for tools, calculators, and resources — built by techs, for techs.</p>
+        <span class="badge">⚡ Free • No Ads • Built for the Field</span>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- QUICK ACCESS PILLS -->
+        <div class="quick-access">
+            <h3>🔍 Quick Jump:</h3>
+            <a href="scaling.html">📐 Calculators</a>
+            <a href="multimeter.html">🛠️ Tool Reference</a>
+            <a href="training.html">📘 Training</a>
+            <a href="hart.html">📡 HART & Calibration</a>
+            <a href="electrical.html">⚡ Electrical</a>
+            <a href="valve.html">🚰 Valve Sizing</a>
+        </div>
+
+        <!-- TOOL GRID -->
+        <h2 class="section-title">🛠️ Tool & Reference Library</h2>
+        <div class="tool-grid">
+
+            <a href="multimeter.html" class="tool-card featured">
+                <div class="icon">📊</div>
+                <h3>Multimeter (VOM)</h3>
+                <p>Measure voltage, current, and resistance. Includes analog & digital types.</p>
+                <span class="tag">Essential</span>
+            </a>
+
+            <a href="hart.html" class="tool-card featured">
+                <div class="icon">📡</div>
+                <h3>HART Communicator</h3>
+                <p>Configure, calibrate, and troubleshoot smart field instruments.</p>
+                <span class="tag">Advanced</span>
+            </a>
+
+            <a href="calibrator.html" class="tool-card calculator">
+                <div class="icon">🔁</div>
+                <h3>4-20mA Loop Calibrator</h3>
+                <p>Test and calibrate current loops. Simulate and measure mA signals.</p>
+                <span class="tag">Calibration</span>
+            </a>
+
+            <a href="tempcal.html" class="tool-card calculator">
+                <div class="icon">🌡️</div>
+                <h3>Thermocouple / RTD Calibrator</h3>
+                <p>Simulate and measure temperature sensors for accurate readings.</p>
+                <span class="tag">Temperature</span>
+            </a>
+
+            <a href="pressure.html" class="tool-card calculator">
+                <div class="icon">💨</div>
+                <h3>Pressure Calibrator</h3>
+                <p>Generate and measure pressure for calibrating gauges & transmitters.</p>
+                <span class="tag">Pressure</span>
+            </a>
+
+            <a href="training.html" class="tool-card learning">
+                <div class="icon">📘</div>
+                <h3>Instrumentation Basics</h3>
+                <p>Free training modules on pressure, temperature, flow, and level measurement.</p>
+                <span class="tag">Training</span>
+            </a>
+
+            <a href="troubleshoot.html" class="tool-card learning">
+                <div class="icon">🧪</div>
+                <h3>Loop Troubleshooting</h3>
+                <p>Step-by-step guides for diagnosing 4-20mA and HART loops in the field.</p>
+                <span class="tag">Troubleshooting</span>
+            </a>
+
+            <a href="electrical.html" class="tool-card reference">
+                <div class="icon">⚡</div>
+                <h3>Electrical Reference</h3>
+                <p>Ohm's law, wire sizing, NEC codes, and electrical safety for techs.</p>
+                <span class="tag">Electrical</span>
+            </a>
+
+            <a href="scaling.html" class="tool-card calculator">
+                <div class="icon">📐</div>
+                <h3>Instrument Scaling Calculator</h3>
+                <p>Convert between 4-20mA signals, percentages, and process variables.</p>
+                <span class="tag">Calculator</span>
+            </a>
+
+            <a href="valve.html" class="tool-card advanced">
+                <div class="icon">🚰</div>
+                <h3>Control Valve Sizing</h3>
+                <p>Tools and formulas for sizing control valves based on process data.</p>
+                <span class="tag">Advanced</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs. <br>
+        <span style="font-size:0.8rem; opacity:0.7;">Hosted locally &bull; Free to use &bull; No ads ever</span></p>
+        <p style="margin-top:10px; font-size:0.8rem;">
+            <a href="multimeter.html">Multimeter</a> &bull;
+            <a href="hart.html">HART</a> &bull;
+            <a href="calibrator.html">Loop Calibrator</a> &bull;
+            <a href="pressure.html">Pressure</a> &bull;
+            <a href="tempcal.html">Temp Calibrator</a> &bull;
+            <a href="training.html">Training</a> &bull;
+            <a href="troubleshoot.html">Troubleshooting</a> &bull;
+            <a href="electrical.html">Electrical</a> &bull;
+            <a href="scaling.html">Scaling</a> &bull;
+            <a href="valve.html">Valve Sizing</a>
+        </p>
+    </footer>
+
+</body>
+</html>

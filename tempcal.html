@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermocouple / RTD Calibrator - Instrument Tech Toolbox</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a3a; line-height: 1.7; }
+        .header { background: linear-gradient(135deg, #0b2b44, #1a5276); color: white; padding: 25px 20px; }
+        .header .container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header a { color: white; text-decoration: none; font-weight: 600; }
+        .header a:hover { color: #f1c40f; }
+        .header .back-link { background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 8px; font-size: 0.95rem; transition: background 0.2s; }
+        .header .back-link:hover { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .breadcrumb { font-size: 0.9rem; color: #5a6a7a; margin-bottom: 20px; }
+        .breadcrumb a { color: #1a5276; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .tool-header { margin-bottom: 30px; }
+        .tool-header .icon { font-size: 3.5rem; margin-bottom: 5px; }
+        .tool-header h1 { font-size: 2.4rem; color: #0b2b44; }
+        .tool-header .subtitle { font-size: 1.1rem; color: #4a5a6a; }
+        .tag { display: inline-block; background: #e8edf3; color: #1a5276; font-size: 0.8rem; padding: 4px 16px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .tag.calibration { background: #27ae60; color: white; }
+        .tag.essential { background: #f1c40f; color: #0b2b44; }
+        .content-section { background: white; border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .content-section h2 { color: #0b2b44; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f1c40f; padding-bottom: 8px; }
+        .content-section h3 { color: #1a5276; font-size: 1.15rem; margin-top: 20px; margin-bottom: 8px; }
+        .content-section ul { padding-left: 25px; margin: 10px 0; }
+        .content-section ul li { margin-bottom: 6px; }
+        .content-section .tip-box { background: #eef7fb; border-left: 4px solid #1a5276; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .warning-box { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .success-box { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table th { background: #e8edf3; border-bottom: 2px solid #1a5276; padding: 8px; text-align: left; }
+        table td { padding: 8px; border-bottom: 1px solid #d0dae6; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .related-item { background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e8edf3; transition: all 0.2s; text-decoration: none; color: #1a2a3a; }
+        .related-item:hover { background: #e8edf3; transform: translateY(-3px); }
+        .related-item .icon { font-size: 1.8rem; display: block; }
+        .related-item .name { font-weight: 600; font-size: 0.9rem; }
+        .footer { background: #0b2b44; color: #a0b8cc; text-align: center; padding: 25px 20px; font-size: 0.9rem; margin-top: 20px; }
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header .container { flex-direction: column; text-align: center; } .tool-header h1 { font-size: 1.8rem; } .content-section { padding: 20px; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; Thermocouple / RTD Calibrator</div>
+        <div class="tool-header">
+            <div class="icon">🌡️</div>
+            <h1>Thermocouple / RTD Calibrator</h1>
+            <p class="subtitle">Simulate and measure temperature sensors for accurate process control and calibration.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag calibration">Calibration</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>🔍 What is a Temperature Calibrator?</h2>
+            <p>A <strong>temperature calibrator</strong> is a specialized tool used to test and calibrate temperature sensors and transmitters. It can <strong>simulate</strong> (source) temperature signals and <strong>measure</strong> real temperature from sensors.</p>
+            <ul>
+                <li>📤 <strong>Simulate:</strong> Generate thermocouple (mV) and RTD (ohms) signals</li>
+                <li>📥 <strong>Measure:</strong> Read temperature from thermocouples and RTDs</li>
+                <li>📊 <strong>Calibrate:</strong> Verify and adjust temperature transmitters</li>
+                <li>🔧 <strong>Troubleshoot:</strong> Isolate problems in temperature loops</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>🌡️ Thermocouple vs. RTD</h2>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">Feature</th><th style="padding:8px; text-align:left;">Thermocouple</th><th style="padding:8px; text-align:left;">RTD</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">Signal Type</td><td style="padding:8px;">Voltage (mV)</td><td style="padding:8px;">Resistance (Ω)</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">Temperature Range</td><td style="padding:8px;">-270°C to 2,300°C</td><td style="padding:8px;">-200°C to 850°C</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">Accuracy</td><td style="padding:8px;">Moderate (1-2°C)</td><td style="padding:8px;">High (0.1-0.5°C)</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">Response Time</td><td style="padding:8px;">Fast</td><td style="padding:8px;">Slow</td></tr>
+                <tr><td style="padding:8px;">Cost</td><td style="padding:8px;">Inexpensive</td><td style="padding:8px;">Moderate</td></tr>
+            </table>
+        </div>
+        <div class="content-section">
+            <h2>📋 How to Calibrate a Temperature Transmitter</h2>
+            <ol>
+                <li>Isolate the transmitter from the sensor</li>
+                <li>Connect the calibrator to the transmitter input</li>
+                <li>Connect a loop calibrator to measure mA output</li>
+                <li>Simulate zero value (e.g., 0°C) and note mA (should be 4mA)</li>
+                <li>Simulate span value (e.g., 100°C) and note mA (should be 20mA)</li>
+                <li>Check intermediate points: 25%, 50%, 75%</li>
+                <li>Adjust if needed using zero and span adjustments</li>
+            </ol>
+            <div class="success-box"><strong>✅ Best Practice:</strong> Always match the thermocouple type (J, K, T, etc.) exactly. Using the wrong type introduces errors.</div>
+        </div>
+        <div class="content-section">
+            <h2>📊 Type K Thermocouple Reference</h2>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">Temperature (°C)</th><th style="padding:8px; text-align:left;">Voltage (mV)</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">0°C</td><td style="padding:8px;">0.000 mV</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">25°C</td><td style="padding:8px;">1.000 mV</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">50°C</td><td style="padding:8px;">2.023 mV</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">100°C</td><td style="padding:8px;">4.096 mV</td></tr>
+                <tr><td style="padding:8px;">200°C</td><td style="padding:8px;">8.138 mV</td></tr>
+            </table>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="multimeter.html" class="related-item"><span class="icon">📊</span><span class="name">Multimeter</span></a>
+                <a href="calibrator.html" class="related-item"><span class="icon">🔁</span><span class="name">4-20mA Calibrator</span></a>
+                <a href="hart.html" class="related-item"><span class="icon">📡</span><span class="name">HART Communicator</span></a>
+                <a href="training.html" class="related-item"><span class="icon">📘</span><span class="name">Instrumentation Basics</span></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
+    </footer>
+</body>
+</html>

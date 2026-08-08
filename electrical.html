@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Reference - Instrument Tech Toolbox</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; color: #1a2a3a; line-height: 1.7; }
+        .header { background: linear-gradient(135deg, #0b2b44, #1a5276); color: white; padding: 25px 20px; }
+        .header .container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .header a { color: white; text-decoration: none; font-weight: 600; }
+        .header a:hover { color: #f1c40f; }
+        .header .back-link { background: rgba(255,255,255,0.15); padding: 8px 20px; border-radius: 8px; font-size: 0.95rem; transition: background 0.2s; }
+        .header .back-link:hover { background: rgba(255,255,255,0.25); color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
+        .breadcrumb { font-size: 0.9rem; color: #5a6a7a; margin-bottom: 20px; }
+        .breadcrumb a { color: #1a5276; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .tool-header { margin-bottom: 30px; }
+        .tool-header .icon { font-size: 3.5rem; margin-bottom: 5px; }
+        .tool-header h1 { font-size: 2.4rem; color: #0b2b44; }
+        .tool-header .subtitle { font-size: 1.1rem; color: #4a5a6a; }
+        .tag { display: inline-block; background: #e8edf3; color: #1a5276; font-size: 0.8rem; padding: 4px 16px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 6px; }
+        .tag.essential { background: #f1c40f; color: #0b2b44; }
+        .tag.reference { background: #8e44ad; color: white; }
+        .content-section { background: white; border-radius: 12px; padding: 30px 35px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .content-section h2 { color: #0b2b44; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f1c40f; padding-bottom: 8px; }
+        .content-section h3 { color: #1a5276; font-size: 1.15rem; margin-top: 20px; margin-bottom: 8px; }
+        .content-section ul { padding-left: 25px; margin: 10px 0; }
+        .content-section ul li { margin-bottom: 6px; }
+        .content-section .formula-box { background: #f8fafc; border: 1px solid #d0dae6; border-radius: 8px; padding: 15px 20px; margin: 15px 0; text-align: center; font-size: 1.2rem; font-weight: 600; color: #0b2b44; }
+        .content-section .tip-box { background: #eef7fb; border-left: 4px solid #1a5276; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .warning-box { background: #fdf2e9; border-left: 4px solid #e67e22; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        .content-section .critical-box { background: #fdedec; border-left: 4px solid #e74c3c; padding: 15px 20px; border-radius: 4px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table th { background: #e8edf3; border-bottom: 2px solid #1a5276; padding: 8px; text-align: left; }
+        table td { padding: 8px; border-bottom: 1px solid #d0dae6; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+        .related-item { background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e8edf3; transition: all 0.2s; text-decoration: none; color: #1a2a3a; }
+        .related-item:hover { background: #e8edf3; transform: translateY(-3px); }
+        .related-item .icon { font-size: 1.8rem; display: block; }
+        .related-item .name { font-weight: 600; font-size: 0.9rem; }
+        .footer { background: #0b2b44; color: #a0b8cc; text-align: center; padding: 25px 20px; font-size: 0.9rem; margin-top: 20px; }
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header .container { flex-direction: column; text-align: center; } .tool-header h1 { font-size: 1.8rem; } .content-section { padding: 20px; } .related-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" style="font-size:1.2rem; font-weight:700;">🔧 Instrument Tech Toolbox</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> &gt; Electrical Reference</div>
+        <div class="tool-header">
+            <div class="icon">⚡</div>
+            <h1>Electrical Reference</h1>
+            <p class="subtitle">Essential electrical formulas, wire sizing, safety, and reference data for instrument technicians.</p>
+            <div style="margin-top:10px;">
+                <span class="tag essential">Essential</span>
+                <span class="tag reference">Reference</span>
+            </div>
+        </div>
+        <div class="content-section">
+            <h2>⚡ Ohm's Law</h2>
+            <div class="formula-box"><strong>V</strong> = <strong>I</strong> × <strong>R</strong></div>
+            <p>Where: <strong>V</strong> = Voltage (Volts), <strong>I</strong> = Current (Amperes), <strong>R</strong> = Resistance (Ohms)</p>
+            <h3>Power Formula (Watt's Law):</h3>
+            <div class="formula-box"><strong>P</strong> = <strong>V</strong> × <strong>I</strong> &nbsp;&nbsp;or&nbsp;&nbsp; <strong>P</strong> = <strong>I²</strong> × <strong>R</strong></div>
+            <div class="tip-box"><strong>💡 Pro Tip:</strong> In a 4-20mA loop with a 250Ω resistor at 12mA: V = 0.012A × 250Ω = 3V.</div>
+        </div>
+        <div class="content-section">
+            <h2>📏 Wire Sizing Reference (AWG)</h2>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">AWG</th><th style="padding:8px; text-align:left;">Diameter (mm)</th><th style="padding:8px; text-align:left;">Resistance (Ω/100m)</th><th style="padding:8px; text-align:left;">Typical Use</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">14 AWG</td><td style="padding:8px;">1.63</td><td style="padding:8px;">0.83</td><td style="padding:8px;">Power circuits</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">16 AWG</td><td style="padding:8px;">1.29</td><td style="padding:8px;">1.32</td><td style="padding:8px;">Lighting</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">18 AWG</td><td style="padding:8px;">1.02</td><td style="padding:8px;">2.10</td><td style="padding:8px;">Instrumentation</td></tr>
+                <tr><td style="padding:8px;">20 AWG</td><td style="padding:8px;">0.81</td><td style="padding:8px;">3.33</td><td style="padding:8px;">Signal wiring</td></tr>
+            </table>
+        </div>
+        <div class="content-section">
+            <h2>📉 Voltage Drop Calculation</h2>
+            <div class="formula-box">V<sub>drop</sub> = I × R<sub>cable</sub></div>
+            <p>For a 4-20mA loop with 18 AWG cable over 500m at 20mA:</p>
+            <p>R<sub>cable</sub> = 0.83 Ω/100m × 2 × 500m = 8.3 Ω</p>
+            <p>V<sub>drop</sub> = 0.020A × 8.3Ω = 0.166V (fine for most loops)</p>
+        </div>
+        <div class="content-section">
+            <h2>🛡️ Electrical Safety - CAT Ratings</h2>
+            <table>
+                <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
+                    <th style="padding:8px; text-align:left;">Category</th><th style="padding:8px; text-align:left;">Application</th><th style="padding:8px; text-align:left;">Typical Locations</th>
+                </tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;"><strong>CAT I</strong></td><td style="padding:8px;">Protected circuits</td><td style="padding:8px;">Electronic equipment</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;"><strong>CAT II</strong></td><td style="padding:8px;">Single-phase appliances</td><td style="padding:8px;">120V/240V outlets</td></tr>
+                <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;"><strong>CAT III</strong></td><td style="padding:8px;">Distribution level</td><td style="padding:8px;">Industrial control panels</td></tr>
+                <tr><td style="padding:8px;"><strong>CAT IV</strong></td><td style="padding:8px;">Utility level</td><td style="padding:8px;">Primary supply lines</td></tr>
+            </table>
+            <div class="critical-box"><strong>⚠️ SAFETY WARNING:</strong> Always use a CAT III 600V meter for industrial applications. Never use a multimeter in current mode across a voltage source!</div>
+        </div>
+        <div class="content-section">
+            <h2>🔗 Related Tools</h2>
+            <div class="related-grid">
+                <a href="multimeter.html" class="related-item"><span class="icon">📊</span><span class="name">Multimeter</span></a>
+                <a href="calibrator.html" class="related-item"><span class="icon">🔁</span><span class="name">4-20mA Calibrator</span></a>
+                <a href="troubleshoot.html" class="related-item"><span class="icon">🧪</span><span class="name">Loop Troubleshooting</span></a>
+                <a href="training.html" class="related-item"><span class="icon">📘</span><span class="name">Instrumentation Basics</span></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
+        <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
+    </footer>
+</body>
+</html>
