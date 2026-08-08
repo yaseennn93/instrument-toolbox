@@ -267,16 +267,15 @@
                     URV (20mA) = <strong>${urv.toFixed(4)}</strong> ${units} &nbsp;|&nbsp;
                     <strong>Span = ${span.toFixed(4)}</strong> ${units}
                 </div>
-                <table class="calibration-table">
-                    <thead>
-                        <tr>
-                            <th>Calibration Point</th>
-                            <th>% of Span</th>
-                            <th>mA Output</th>
-                            <th>Process Value (${units})</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+ <table class="calibration-table">
+    <thead>
+        <tr>
+            <th>Calibration Point</th>
+            <th>mA Output</th>
+            <th>Process Value (${units})</th>
+        </tr>
+    </thead>
+    <tbody>
             `;
 
             points.forEach(p => {
