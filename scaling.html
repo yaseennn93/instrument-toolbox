@@ -38,6 +38,15 @@
         .calculator-box button:hover { background: #0b2b44; }
         .calculator-box button.clear-btn { background: #95a5a6; }
         .calculator-box button.clear-btn:hover { background: #7f8c8d; }
+        .calibration-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
+        .calibration-table th { background: #0b2b44; color: white; padding: 10px 12px; text-align: left; }
+        .calibration-table td { padding: 10px 12px; border-bottom: 1px solid #d0dae6; }
+        .calibration-table tr:hover { background: #f0f4f8; }
+        .calibration-table .highlight { background: #eafaf1; font-weight: 600; }
+        .summary-box { background: #eaf2fa; border-radius: 8px; padding: 15px 20px; margin: 15px 0; border-left: 4px solid #2980b9; }
+        .summary-box strong { color: #0b2b44; }
+        .unit-input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .unit-input-group { grid-template-columns: 1fr; } }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         table th { background: #e8edf3; border-bottom: 2px solid #1a5276; padding: 8px; text-align: left; }
         table td { padding: 8px; border-bottom: 1px solid #d0dae6; }
@@ -64,17 +73,54 @@
         <div class="tool-header">
             <div class="icon">📐</div>
             <h1>Instrument Scaling Calculator</h1>
-            <p class="subtitle">Convert between 4-20mA signals, percentages, and process variables.</p>
+            <p class="subtitle">Convert between 4-20mA signals, percentages, and process variables. Includes automatic calibration point generator.</p>
             <div style="margin-top:10px;">
                 <span class="tag essential">Essential</span>
                 <span class="tag calculator">Calculator</span>
             </div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- NEW: CALIBRATION POINT GENERATOR              -->
+        <!-- ============================================ -->
         <div class="content-section">
-            <h2>📊 How to Use These Calculators</h2>
-            <p>These calculators help you convert between 4-20mA signals, percentages, and engineering units.</p>
-            <div class="success-box"><strong>✅ Quick Reference:</strong> 4mA = 0%, 8mA = 25%, 12mA = 50%, 16mA = 75%, 20mA = 100%</div>
+            <h2>📊 Calibration Point Generator</h2>
+            <p>Enter your transmitter's range to automatically generate 5-point calibration values (0%, 25%, 50%, 75%, 100%).</p>
+
+            <div class="calculator-box">
+                <div class="unit-input-group">
+                    <div>
+                        <label for="calLRV">Lower Range Value (LRV) — 4mA</label>
+                        <input type="number" id="calLRV" step="any" value="0" placeholder="Enter LRV">
+                    </div>
+                    <div>
+                        <label for="calURV">Upper Range Value (URV) — 20mA</label>
+                        <input type="number" id="calURV" step="any" value="100" placeholder="Enter URV">
+                    </div>
+                </div>
+
+                <label for="calUnits">Engineering Units (optional)</label>
+                <input type="text" id="calUnits" value="psi" placeholder="e.g., psi, bar, °C, GPM" style="width:100%; padding:10px 12px; border:1px solid #d0dae6; border-radius:6px; font-size:1rem; margin-bottom:15px;">
+
+                <button onclick="generateCalibrationPoints()">Generate Calibration Points</button>
+                <button class="clear-btn" onclick="clearCalibration()">Clear</button>
+
+                <div id="calibrationResults" style="margin-top:20px;"></div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 How to use:</strong> Enter the LRV (value at 4mA) and URV (value at 20mA). The calculator will show:
+                <ul style="margin-top:8px;">
+                    <li>📊 <strong>Span:</strong> URV - LRV</li>
+                    <li>📈 <strong>5 calibration points</strong> at 0%, 25%, 50%, 75%, and 100% of span</li>
+                    <li>🔁 Each point shows <strong>mA output</strong> and <strong>process value</strong></li>
+                </ul>
+            </div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- CALCULATOR 1: mA to %                        -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>📊 Calculator 1: mA to Percentage</h2>
             <div class="calculator-box">
@@ -86,6 +132,10 @@
             </div>
             <div class="tip-box"><strong>💡 Formula:</strong> % = (mA - 4) / 16 × 100</div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- CALCULATOR 2: % to mA                        -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>📊 Calculator 2: Percentage to mA</h2>
             <div class="calculator-box">
@@ -97,6 +147,10 @@
             </div>
             <div class="tip-box"><strong>💡 Formula:</strong> mA = (% × 16 / 100) + 4</div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- CALCULATOR 3: Process Value to mA            -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>📊 Calculator 3: Process Value to mA</h2>
             <div class="calculator-box">
@@ -112,6 +166,10 @@
             </div>
             <div class="tip-box"><strong>💡 Formula:</strong> mA = ((PV - LRV) / (URV - LRV) × 16) + 4</div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- CALCULATOR 4: mA to Process Value            -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>📊 Calculator 4: mA to Process Value</h2>
             <div class="calculator-box">
@@ -127,11 +185,17 @@
             </div>
             <div class="tip-box"><strong>💡 Formula:</strong> PV = ((mA - 4) / 16 × (URV - LRV)) + LRV</div>
         </div>
+
+        <!-- ============================================ -->
+        <!-- QUICK REFERENCE TABLE                        -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>📋 Quick Reference Table</h2>
             <table>
                 <tr style="background:#e8edf3; border-bottom:2px solid #1a5276;">
-                    <th style="padding:8px; text-align:left;">mA</th><th style="padding:8px; text-align:left;">%</th><th style="padding:8px; text-align:left;">For 0-100 Range</th>
+                    <th style="padding:8px; text-align:left;">mA</th>
+                    <th style="padding:8px; text-align:left;">%</th>
+                    <th style="padding:8px; text-align:left;">For 0-100 Range</th>
                 </tr>
                 <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">4.00</td><td style="padding:8px;">0%</td><td style="padding:8px;">0.00</td></tr>
                 <tr style="border-bottom:1px solid #d0dae6;"><td style="padding:8px;">8.00</td><td style="padding:8px;">25%</td><td style="padding:8px;">25.00</td></tr>
@@ -140,6 +204,10 @@
                 <tr><td style="padding:8px;">20.00</td><td style="padding:8px;">100%</td><td style="padding:8px;">100.00</td></tr>
             </table>
         </div>
+
+        <!-- ============================================ -->
+        <!-- RELATED TOOLS                                -->
+        <!-- ============================================ -->
         <div class="content-section">
             <h2>🔗 Related Tools</h2>
             <div class="related-grid">
@@ -149,12 +217,117 @@
                 <a href="training.html" class="related-item"><span class="icon">📘</span><span class="name">Instrumentation Basics</span></a>
             </div>
         </div>
+
     </div>
+
     <footer class="footer">
         <p>🔧 Instrument Tech Toolbox &mdash; Built for techs, by techs.</p>
         <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;"><a href="index.html">Home</a> &bull; Free to use &bull; No ads</p>
     </footer>
+
     <script>
+        // ============================================
+        // NEW: CALIBRATION POINT GENERATOR
+        // ============================================
+        function generateCalibrationPoints() {
+            const lrv = parseFloat(document.getElementById('calLRV').value);
+            const urv = parseFloat(document.getElementById('calURV').value);
+            const units = document.getElementById('calUnits').value || 'Units';
+
+            if (isNaN(lrv) || isNaN(urv)) {
+                document.getElementById('calibrationResults').innerHTML = `
+                    <div class="result" style="background:#e74c3c;">
+                        ⚠️ Please enter valid LRV and URV values.
+                    </div>
+                `;
+                return;
+            }
+
+            if (lrv >= urv) {
+                document.getElementById('calibrationResults').innerHTML = `
+                    <div class="result" style="background:#e74c3c;">
+                        ⚠️ URV must be greater than LRV!
+                    </div>
+                `;
+                return;
+            }
+
+            const span = urv - lrv;
+            const percentages = [0, 25, 50, 75, 100];
+            const points = percentages.map(p => {
+                const mA = (p / 100) * 16 + 4;
+                const pv = (p / 100) * span + lrv;
+                return { percent: p, mA: mA, pv: pv };
+            });
+
+            let tableHTML = `
+                <div class="summary-box">
+                    <strong>📊 Range Summary:</strong><br>
+                    LRV (4mA) = <strong>${lrv.toFixed(4)}</strong> ${units} &nbsp;|&nbsp;
+                    URV (20mA) = <strong>${urv.toFixed(4)}</strong> ${units} &nbsp;|&nbsp;
+                    <strong>Span = ${span.toFixed(4)}</strong> ${units}
+                </div>
+                <table class="calibration-table">
+                    <thead>
+                        <tr>
+                            <th>Calibration Point</th>
+                            <th>% of Span</th>
+                            <th>mA Output</th>
+                            <th>Process Value (${units})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            points.forEach(p => {
+                const highlight = (p.percent === 0 || p.percent === 100) ? 'highlight' : '';
+                tableHTML += `
+                    <tr class="${highlight}">
+                        <td>${p.percent}%</td>
+                        <td>${p.percent}%</td>
+                        <td>${p.mA.toFixed(2)} mA</td>
+                        <td>${p.pv.toFixed(4)} ${units}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+                <div style="margin-top:10px; font-size:0.9rem; color:#5a6a7a;">
+                    💡 <strong>Calibration points:</strong> Use these values to verify transmitter output during calibration.
+                    ${points.map(p => `${p.percent}% = ${p.mA.toFixed(2)}mA = ${p.pv.toFixed(4)}${units}`).join(' &bull; ')}
+                </div>
+            `;
+
+            document.getElementById('calibrationResults').innerHTML = tableHTML;
+        }
+
+        function clearCalibration() {
+            document.getElementById('calLRV').value = '';
+            document.getElementById('calURV').value = '';
+            document.getElementById('calUnits').value = 'psi';
+            document.getElementById('calibrationResults').innerHTML = '';
+        }
+
+        // Auto-calculate on Enter key for calibration inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('calLRV').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') generateCalibrationPoints();
+            });
+            document.getElementById('calURV').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') generateCalibrationPoints();
+            });
+            document.getElementById('calUnits').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') generateCalibrationPoints();
+            });
+        });
+
+        // ============================================
+        // EXISTING CALCULATORS (updated with better formatting)
+        // ============================================
+
+        // Calculator 1: mA to %
         function calculatePercent() {
             let ma = parseFloat(document.getElementById('maInput').value);
             if (isNaN(ma) || ma < 0) { document.getElementById('percentResult').textContent = 'Invalid'; return; }
@@ -163,7 +336,10 @@
             if (percent > 100) percent = 100;
             document.getElementById('percentResult').textContent = percent.toFixed(2);
         }
+
         function clearMA() { document.getElementById('maInput').value = ''; document.getElementById('percentResult').textContent = '—'; }
+
+        // Calculator 2: % to mA
         function calculateMA() {
             let percent = parseFloat(document.getElementById('percentInput').value);
             if (isNaN(percent) || percent < 0) { document.getElementById('maResult2').textContent = 'Invalid'; return; }
@@ -171,7 +347,10 @@
             let ma = (percent * 16 / 100) + 4;
             document.getElementById('maResult2').textContent = ma.toFixed(2);
         }
+
         function clearPercent() { document.getElementById('percentInput').value = ''; document.getElementById('maResult2').textContent = '—'; }
+
+        // Calculator 3: Process Value to mA
         function calculatePVtoMA() {
             let pv = parseFloat(document.getElementById('pvInput').value);
             let min = parseFloat(document.getElementById('pvMin').value);
@@ -182,7 +361,10 @@
             let ma = ((pv - min) / (max - min) * 16) + 4;
             document.getElementById('maResult3').textContent = ma.toFixed(2);
         }
+
         function clearPV() { document.getElementById('pvInput').value = ''; document.getElementById('pvMin').value = ''; document.getElementById('pvMax').value = ''; document.getElementById('maResult3').textContent = '—'; }
+
+        // Calculator 4: mA to Process Value
         function calculateMAtoPV() {
             let ma = parseFloat(document.getElementById('maInput2').value);
             let min = parseFloat(document.getElementById('pvMin2').value);
@@ -193,13 +375,20 @@
             let pv = ((ma - 4) / 16 * (max - min)) + min;
             document.getElementById('pvResult2').textContent = pv.toFixed(2);
         }
+
         function clearMAPV() { document.getElementById('maInput2').value = ''; document.getElementById('pvMin2').value = ''; document.getElementById('pvMax2').value = ''; document.getElementById('pvResult2').textContent = '—'; }
+
+        // Enter key support for all calculators
         document.addEventListener('DOMContentLoaded', function() {
+            // Calculator 1
             document.getElementById('maInput').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculatePercent(); });
+            // Calculator 2
             document.getElementById('percentInput').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculateMA(); });
+            // Calculator 3
             document.getElementById('pvInput').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculatePVtoMA(); });
             document.getElementById('pvMin').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculatePVtoMA(); });
             document.getElementById('pvMax').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculatePVtoMA(); });
+            // Calculator 4
             document.getElementById('maInput2').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculateMAtoPV(); });
             document.getElementById('pvMin2').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculateMAtoPV(); });
             document.getElementById('pvMax2').addEventListener('keyup', function(e) { if (e.key === 'Enter') calculateMAtoPV(); });
